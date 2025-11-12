@@ -83,5 +83,25 @@
 
 </body>
 
+  <body class="font-sans bg-gray-50 text-gray-800 scroll-smooth">
+
+  <!-- Navbar placeholder -->
+  <div id="navbar"></div>
+
+  <script>
+    // Load nav.html and inject it
+    fetch('/nav.html')
+      .then(res => res.text())
+      .then(html => document.getElementById('navbar').innerHTML = html)
+      .catch(err => console.error('Navbar load error:', err));
+  </script>
+
+  <!-- Then the rest of your page -->
+  <header id="home" class="bg-primary text-white text-center py-16">
+    <h1 class="text-4xl font-bold mb-2">Evan R</h1>
+    <p class="text-lg text-gray-200">Industrial Engineer | Math Enthusiast | Researcher</p>
+  </header>
+
+
 </html>
 
