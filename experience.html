@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Experience - Evan R</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: { primary: '#2b2d42', accent: '#ef233c' }}}};
+  </script>
+</head>
+<body class="font-sans bg-gray-50 text-gray-800 scroll-smooth">
+
+  <div id="navbar"></div>
+  <script>
+    fetch('/nav.html')
+      .then(r => r.text())
+      .then(html => document.getElementById('navbar').innerHTML = html);
+  </script>
+
+  <section class="max-w-3xl mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold text-primary mb-6">Experience</h1>
+    <ul class="space-y-4">
+      <li>
+        <strong>Industrial Engineering Intern</strong> – The Toro Company (Summer 2025)<br>
+        <span class="text-gray-600 text-sm">Supported order services operations and developed process improvement tools.</span>
+      </li>
+      <li>
+        <strong>Undergraduate Researcher</strong> – Human Factors Lab<br>
+        <span class="text-gray-600 text-sm">Analyzed one-arm lifting tasks using EMG sensor data to study muscle activation.</span>
+      </li>
+    </ul>
+  </section>
+</body>
+</html>
