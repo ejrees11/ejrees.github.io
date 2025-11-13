@@ -1,25 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projects - Evan R</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: { colors: { primary: '#122d42', secondary: '#66a2b2', accent: '#0feed9' } } },
-    };
-  </script>
+  <style>
+    :root {
+      --primary: #122d42;
+      --secondary: #66a2b2;
+      --accent: #0feed9;
+    }
+
+    body {
+      background-color: var(--primary);
+      color: var(--secondary);
+      font-family: system-ui, sans-serif;
+    }
+
+    .bg-primary { background-color: var(--primary); }
+    .text-secondary { color: var(--secondary); }
+    .text-accent { color: var(--accent); }
+    .border-accent { border-color: var(--accent); }
+    .hover-accent:hover { color: var(--accent); }
+  </style>
 </head>
-<body class="bg-primary text-secondary font-sans">
+<body class="min-h-screen flex flex-col">
+  
+  <!-- Navigation -->
   <div id="navbar"></div>
+
+  <main class="flex-grow max-w-6xl mx-auto px-6 py-16">
+    <h1 class="text-4xl font-semibold mb-10 text-accent text-center drop-shadow-lg">Projects</h1>
+
+    <!-- Projects Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+      
+      <!-- Example Project Card -->
+      <div class="bg-[#0feed9]/5 border border-accent/50 rounded-2xl p-6 hover:shadow-[0_0_15px_#0feed9] transition-all duration-300">
+        <img src="https://via.placeholder.com/400x250" alt="Project 1" class="rounded-lg mb-4">
+        <h2 class="text-2xl text-accent font-semibold mb-2">Project Title One</h2>
+        <p class="text-secondary">A brief description of your project. Mention its purpose, what technologies you used, or what problem it solves.</p>
+      </div>
+
+      <div class="bg-[#0feed9]/5 border border-accent/50 rounded-2xl p-6 hover:shadow-[0_0_15px_#0feed9] transition-all duration-300">
+        <img src="https://via.placeholder.com/400x250" alt="Project 2" class="rounded-lg mb-4">
+        <h2 class="text-2xl text-accent font-semibold mb-2">Project Title Two</h2>
+        <p class="text-secondary">A short summary describing what this project does and why it’s interesting or important.</p>
+      </div>
+
+      <div class="bg-[#0feed9]/5 border border-accent/50 rounded-2xl p-6 hover:shadow-[0_0_15px_#0feed9] transition-all duration-300">
+        <img src="https://via.placeholder.com/400x250" alt="Project 3" class="rounded-lg mb-4">
+        <h2 class="text-2xl text-accent font-semibold mb-2">Project Title Three</h2>
+        <p class="text-secondary">Include any relevant context, challenges, or what you learned from this project.</p>
+      </div>
+
+    </div>
+  </main>
+
   <script>
-    fetch('/nav.html').then(r => r.text()).then(h => document.getElementById('navbar').innerHTML = h);
+    // Load the shared navbar file dynamically
+    fetch('nav.html')
+      .then(res => res.text())
+      .then(html => document.getElementById('navbar').innerHTML = html);
   </script>
 
-  <main class="max-w-3xl mx-auto py-12 px-4">
-    <h1 class="text-4xl text-accent font-bold mb-6">Projects</h1>
-    <p>Here you can showcase detailed descriptions, images, or links to your projects.</p>
-  </main>
 </body>
 </html>
