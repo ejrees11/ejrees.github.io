@@ -5,21 +5,91 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Experience - Evan R</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: { colors: { primary: '#122d42', secondary: '#66a2b2', accent: '#0feed9' } } },
-    };
-  </script>
+
+  <style>
+    :root {
+      --primary: #122d42;
+      --secondary: #66a2b2;
+      --accent: #0feed9;
+    }
+
+    body {
+      background-color: var(--primary);
+      color: var(--secondary);
+      font-family: system-ui, sans-serif;
+    }
+
+    .text-accent { color: var(--accent); }
+    .border-accent { border-color: var(--accent); }
+    .bg-accent { background-color: var(--accent); }
+  </style>
 </head>
-<body class="bg-primary text-secondary font-sans">
+<body class="min-h-screen flex flex-col">
+
+  <!-- Navbar -->
   <div id="navbar"></div>
+
+  <main class="flex-grow max-w-4xl mx-auto px-6 py-16 relative">
+    <h1 class="text-4xl font-semibold mb-12 text-accent text-center drop-shadow-lg">
+      Experience
+    </h1>
+
+    <!-- Timeline spine -->
+    <div class="absolute left-6 md:left-10 top-0 bottom-0 w-[2px] bg-[#0feed9]/30"></div>
+
+    <div class="space-y-12 ml-10 md:ml-16">
+
+      <!-- Experience Card 1 -->
+      <div class="relative flex items-start">
+        <!-- Dot -->
+        <div class="absolute -left-6 md:-left-10 mt-2 w-4 h-4 bg-accent rounded-full shadow-[0_0_10px_#0feed9]"></div>
+        <!-- Card -->
+        <div class="bg-[#0feed9]/5 border border-accent/40 rounded-2xl p-6 w-full hover:shadow-[0_0_20px_#0feed9] transition-all duration-300">
+          <h2 class="text-2xl text-accent font-semibold mb-1">Industrial Engineering Intern – The Toro Company</h2>
+          <p class="text-sm italic mb-2 text-[#66a2b2]/80">Summer 2025</p>
+          <p class="leading-relaxed">
+            Supported order services operations and developed process improvement tools.
+            Analyzed workflows and designed systems to enhance order fulfillment efficiency.
+          </p>
+        </div>
+      </div>
+
+      <!-- Experience Card 2 -->
+      <div class="relative flex items-start">
+        <div class="absolute -left-6 md:-left-10 mt-2 w-4 h-4 bg-accent rounded-full shadow-[0_0_10px_#0feed9]"></div>
+        <div class="bg-[#0feed9]/5 border border-accent/40 rounded-2xl p-6 w-full hover:shadow-[0_0_20px_#0feed9] transition-all duration-300">
+          <h2 class="text-2xl text-accent font-semibold mb-1">Undergraduate Researcher – Human Factors Lab</h2>
+          <p class="text-sm italic mb-2 text-[#66a2b2]/80">Ongoing</p>
+          <p class="leading-relaxed">
+            Conducted experiments analyzing muscle activation patterns in one-arm lifting tasks using EMG sensors.
+            Designed ergonomic research setups and analyzed sensor data to optimize human-system interaction.
+          </p>
+        </div>
+      </div>
+
+      <!-- Experience Card 3 -->
+      <div class="relative flex items-start">
+        <div class="absolute -left-6 md:-left-10 mt-2 w-4 h-4 bg-accent rounded-full shadow-[0_0_10px_#0feed9]"></div>
+        <div class="bg-[#0feed9]/5 border border-accent/40 rounded-2xl p-6 w-full hover:shadow-[0_0_20px_#0feed9] transition-all duration-300">
+          <h2 class="text-2xl text-accent font-semibold mb-1">Student Organization President</h2>
+          <p class="text-sm italic mb-2 text-[#66a2b2]/80">2024 – 2025</p>
+          <p class="leading-relaxed">
+            Led executive meetings, coordinated events, and managed cross-functional teams to enhance campus engagement.
+            Fostered communication, leadership development, and collaboration across the organization.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
   <script>
-    fetch('/nav.html').then(r => r.text()).then(h => document.getElementById('navbar').innerHTML = h);
+    // Load shared navbar
+    fetch('nav.html')
+      .then(res => res.text())
+      .then(html => document.getElementById('navbar').innerHTML = html)
+      .catch(err => console.error('Navbar load error:', err));
   </script>
 
-  <main class="max-w-3xl mx-auto py-12 px-4">
-    <h1 class="text-4xl text-accent font-bold mb-6">Experience</h1>
-    <p>Here you can showcase detailed descriptions, images, or links to your projects.</p>
-  </main>
 </body>
 </html>
