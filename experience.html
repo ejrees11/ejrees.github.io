@@ -20,12 +20,6 @@
       overflow-x: hidden;
     }
 
-    /* Glow animation for the vertical timeline */
-    @keyframes flowDown {
-      0% { background-position: 0 0; }
-      100% { background-position: 0 100%; }
-    }
-
     /* Fade-up animation for cards */
     @keyframes fadeUp {
       0% { opacity: 0; transform: translateY(40px); }
@@ -38,19 +32,23 @@
       animation: fadeUp 0.8s ease-out forwards;
     }
 
-    .fade-up:nth-child(1) { animation-delay: 0.1s; }
-    .fade-up:nth-child(2) { animation-delay: 0.3s; }
-    .fade-up:nth-child(3) { animation-delay: 0.5s; }
-
-    /* Glowing vertical timeline with flowing gradient */
-    .timeline-line {
-      background: linear-gradient(to bottom, transparent, var(--accent), transparent);
-      background-size: 100% 400%;
-      animation: flowDown 4s linear infinite;
-    }
-
     .text-accent { color: var(--accent); }
     .border-accent { border-color: var(--accent); }
+
+    /* Timeline line */
+    .timeline-line {
+      position: absolute;
+      left: 6px;
+      md:left: 10px;
+      top: 0;
+      width: 2px;
+      background-color: var(--accent);
+      border-radius: 2px;
+      transform-origin: top;
+      height: 0;
+      box-shadow: 0 0 10px var(--accent);
+      transition: height 1s ease-out;
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -59,12 +57,16 @@
   <div id="navbar"></div>
 
   <main class="flex-grow max-w-4xl mx-auto px-6 py-16 relative">
+
     <h1 class="text-4xl font-semibold mb-12 text-accent text-center drop-shadow-lg">
       Experience
     </h1>
 
-    <!-- Featured Current Position (standalone card) -->
-    <div class="bg-[#0feed9]/10 border border-accent/50 rounded-2xl p-8 mb-16 shadow-[0_0_15px_#0feed9]">
+    <!-- Timeline line -->
+    <div id="timeline" class="timeline-line left-6 md:left-10"></div>
+
+    <!-- Featured Current Position -->
+    <div class="relative z-10 bg-[#0feed9]/10 border border-accent/50 rounded-2xl p-8 mb-16 shadow-[0_0_25px_#0feed9]">
       <h2 class="text-3xl text-accent font-semibold mb-2">Current Position – Your Role Here</h2>
       <p class="text-sm italic mb-2 text-[#66a2b2]/80">2025 – Present</p>
       <p class="leading-relaxed">
@@ -73,10 +75,8 @@
       </p>
     </div>
 
-    <!-- Timeline spine -->
-    <div class="absolute left-6 md:left-10 top-0 bottom-0 w-[2px] opacity-70 timeline-line"></div>
-
-    <div class="space-y-12 ml-10 md:ml-16">
+    <!-- Experience Section -->
+    <div class="space-y-12 ml-10 md:ml-16 relative">
 
       <!-- Experience Card 1 -->
       <div class="relative flex items-start fade-up">
@@ -129,12 +129,10 @@
       .then(html => document.getElementById('navbar').innerHTML = html)
       .catch(err => console.error('Navbar load error:', err));
 
-    // Intersection Observer for fade-in animation
+    // Fade-in animation observer
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.animationPlayState = "running";
-        }
+        if (entry.isIntersecting) entry.target.style.animationPlayState = "running";
       });
     }, { threshold: 0.2 });
 
@@ -142,6 +140,20 @@
       el.style.animationPlayState = "paused";
       observer.observe(el);
     });
+
+    // Scroll-based timeline draw effect
+    const timeline = document.getElementById('timeline');
+    const docHeight = document.body.scrollHeight - window.innerHeight;
+
+    function updateTimeline() {
+      const scrollY = window.scrollY;
+      const percent = Math.min(scrollY / docHeight, 1);
+      const fullHeight = document.body.scrollHeight - 200;
+      timeline.style.height = (percent * fullHeight) + 'px';
+    }
+
+    window.addEventListener('scroll', updateTimeline);
+    updateTimeline();
   </script>
 
 </body>
