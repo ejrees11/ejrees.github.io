@@ -19,6 +19,23 @@
       },
     };
   </script>
+  <style>
+@keyframes circuitPulse {
+  0%, 100% {
+    opacity: 0.12;
+    filter: drop-shadow(0 0 2px #0feed9);
+  }
+  50% {
+    opacity: 0.25;
+    filter: drop-shadow(0 0 6px #0feed9);
+  }
+}
+
+.animate-pulse-circuit {
+  animation: circuitPulse 6s ease-in-out infinite;
+}
+</style>
+
 </head>
 
 <body class="font-sans bg-primary text-secondary scroll-smooth">
@@ -34,26 +51,25 @@
 
   <!-- HEADER -->
 <header id="home" 
-  class="text-center py-16 bg-primary text-secondary relative overflow-hidden">
+  class="relative text-center py-16 bg-primary text-secondary overflow-hidden">
 
-  <!-- Circuit pattern overlay -->
-  <div class="absolute inset-0 opacity-10"
-       style="background-image: url('data:image/svg+xml;utf8,
-       <svg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' fill=\'none\' stroke=\'%230feed9\' stroke-width=\'0.5\'>
-         <path d=\'M10 10h30v30H10zM60 10h30v30H60zM110 10h30v30h-30zM10 60h30v30H10zM60 60h30v30H60zM110 60h30v30h-30z\'/>
-         <circle cx=\'20\' cy=\'20\' r=\'2\' fill=\'%230feed9\'/>
-         <circle cx=\'70\' cy=\'70\' r=\'2\' fill=\'%230feed9\'/>
-         <circle cx=\'120\' cy=\'20\' r=\'2\' fill=\'%230feed9\'/>
-       </svg>');
-       background-repeat: repeat;">
+  <!-- Animated Circuit Pattern Overlay -->
+  <div class="absolute inset-0 opacity-15 animate-pulse-circuit"
+       style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'180\' height=\'180\' viewBox=\'0 0 200 200\'><rect width=\'200\' height=\'200\' fill=\'none\' stroke=\'%230feed9\' stroke-width=\'0.4\'/><path d=\'M10 10h30v30H10zM60 10h30v30H60zM110 10h30v30h-30zM10 60h30v30H10zM60 60h30v30H60zM110 60h30v30h-30zM10 110h30v30H10zM60 110h30v30H60zM110 110h30v30h-30z\' stroke=\'%230feed9\' stroke-width=\'0.4\' fill=\'none\'/><circle cx=\'25\' cy=\'25\' r=\'1.5\' fill=\'%230feed9\'/><circle cx=\'75\' cy=\'75\' r=\'1.5\' fill=\'%230feed9\'/><circle cx=\'125\' cy=\'25\' r=\'1.5\' fill=\'%230feed9\'/><circle cx=\'25\' cy=\'125\' r=\'1.5\' fill=\'%230feed9\'/></svg>');
+              background-repeat: repeat;
+              background-size: 200px 200px;">
   </div>
 
-  <!-- Header content -->
+  <!-- Header Content -->
   <div class="relative z-10">
-    <h1 class="text-5xl font-bold mb-3 text-accent">Evan R</h1>
+    <h1 class="text-5xl font-bold mb-3 text-accent drop-shadow-lg">Evan R</h1>
     <p class="text-xl text-secondary">Industrial Engineer | Math Enthusiast | Researcher</p>
   </div>
+
+  <!-- Gradient Overlay (softens the pattern) -->
+  <div class="absolute inset-0 bg-gradient-to-b from-primary/80 to-primary/90"></div>
 </header>
+
 
 
   <!-- PROJECTS -->
